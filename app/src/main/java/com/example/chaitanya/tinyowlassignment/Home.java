@@ -1,18 +1,17 @@
 package com.example.chaitanya.tinyowlassignment;
 
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 
 
-public class Home extends ActionBarActivity implements View.OnClickListener{
+public class Home extends ActionBarActivity implements View.OnClickListener, PostDialog.PostDialogListener{
 
     Button btnMyNotes;
     String strAccessToken;
@@ -26,7 +25,7 @@ public class Home extends ActionBarActivity implements View.OnClickListener{
         btnMyNotes = (Button)findViewById(R.id.btnMyNotes);
         btnMyNotes.setOnClickListener(this);
 
-        strAccessToken = "CAACEdEose0cBAAkrwZBMyjWMNI17QwOqOQg9sCWD7CWxcn2TulEDaXGNKEq5JFsfegrpaoVuap0t3Q2mcbcGioaZCmmNVKiGBCFj0dnuVAYalzIoSCceugPLJuZAXPjfkBkTNcolclNQGZA75DXlHqZBJEUETHmiAKPxJXbRLVtyU8WMQ2HecZCF00C8khnEYy2UnCiBIz4wZDZD";
+        strAccessToken = "CAACEdEose0cBAEgA8VZCHM1UBcIZBmwZA3S0Rb4HpyqlhY4k0ordQZBTz2oYidXM3CqLTe20HDTlfQZCG46tl2PuaGCgUAnW2PBLYb7RcGmBjt1jaRZAgfkNfIQn96RsZBjkZC48ujmooZCR2WJ72Q6fIrYZC1XXfSKeThK2QZACEcPhtD2UaExfHsYcmEw5SNqmQDT3pEnVGZA27QZDZD";
     }
 
     @Override
@@ -41,9 +40,19 @@ public class Home extends ActionBarActivity implements View.OnClickListener{
         if(v.getId()==R.id.btnMyNotes){
             Log.d("ZMY", "Pressed for NOTES");
 
-            Intent intent = new Intent(this, Notes.class);
+            FragmentManager fragmentManager = getFragmentManager();
+            PostDialog postDialog = new PostDialog();
+            postDialog.show(fragmentManager, "postDialog");
+
+            /*Intent intent = new Intent(this, Notes.class);
             intent.putExtra("ACCESS_TOKEN", strAccessToken);
-            startActivity(intent);
+            startActivity(intent);*/
         }
+    }
+
+    @Override
+    public void onDialogSubmit(DialogFragment dialog) {
+        EditText editText = (EditText) dialog.getDialog().findViewById(R.id.postMessage);
+        Log.d("ZMY", "Got the callback successfully. Message is " + editText.getText());
     }
 }

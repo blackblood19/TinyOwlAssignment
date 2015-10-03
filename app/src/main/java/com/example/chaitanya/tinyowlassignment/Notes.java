@@ -44,7 +44,7 @@ public class Notes extends ActionBarActivity {
             strAccessToken = extras.getString("ACCESS_TOKEN");
         }
 
-        txtAccessToken = (TextView) findViewById(R.id.txtAccessToken);
+        //txtAccessToken = (TextView) findViewById(R.id.txtAccessToken);
 
 
         // Instantiate the RequestQueue.
@@ -71,10 +71,11 @@ public class Notes extends ActionBarActivity {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);*/
 
-        final List<String> posts = new ArrayList<String>();
-        final ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,posts);
+        final List<post> posts = new ArrayList<post>();
+        //final ArrayAdapter<String> adapter;
+        //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,posts);
         //adapter = new ArrayAdapter<String>(this, R.layout.posts_list_view, posts);
+        final postsAdapter adapter = new postsAdapter(this, posts);
         lstPosts = (ListView) findViewById(R.id.lstPosts);
         lstPosts.setAdapter(adapter);
 
@@ -92,7 +93,7 @@ public class Notes extends ActionBarActivity {
                             datai = data.optJSONObject(i);
                             if(datai==null) break;
                             if(datai.opt("message")==null)  continue;
-                            posts.add(datai.opt("message").toString());
+                            posts.add(new post(datai.opt("message").toString(), datai.opt("id").toString()));
                             adapter.notifyDataSetChanged();
                             Log.d("ZMY", datai.opt("message").toString());
                         }
