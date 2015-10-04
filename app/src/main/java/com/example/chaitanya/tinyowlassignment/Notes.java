@@ -3,6 +3,9 @@ package com.example.chaitanya.tinyowlassignment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -78,6 +81,12 @@ public class Notes extends ActionBarActivity {
         final postsAdapter adapter = new postsAdapter(this, posts);
         lstPosts = (ListView) findViewById(R.id.lstPosts);
         lstPosts.setAdapter(adapter);
+        lstPosts.setOnItemClickListener(new OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("ZMY", "Clicked on ");
+            }
+        });
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -113,4 +122,9 @@ public class Notes extends ActionBarActivity {
         //MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
         //txtAccessToken.setText(strAccessToken);
     }
+
+    /*@Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("ZMY", "Clicked on " + position + ": ");
+    }*/
 }

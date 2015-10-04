@@ -14,10 +14,16 @@ import android.widget.Button;
  */
 public class PostDialog extends DialogFragment{
     private String mAction;
+    private String mMessage;
 
     /*PostDialog(String action){
         this.mAction = action;
     }*/
+
+    public void setAction(String action){
+        this.mAction = action;
+    }
+
 
     public interface PostDialogListener{
         public void onDialogSubmit(DialogFragment dialog);
@@ -48,7 +54,8 @@ public class PostDialog extends DialogFragment{
         View dialogView = inflater.inflate(R.layout.post_dialog, null);
         builder.setView(dialogView);
 
-        final Button btnAction = (Button) dialogView.findViewById(R.id.postAction);
+        Button btnAction = (Button) dialogView.findViewById(R.id.postAction);
+        btnAction.setText(mAction);
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
