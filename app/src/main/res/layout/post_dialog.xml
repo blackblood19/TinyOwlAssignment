@@ -13,6 +13,12 @@
         android:minHeight="80dp"
         android:inputType="textMultiLine"/>
 
+    <TextView
+        android:id="@+id/postNodeId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/postAction"
         android:layout_width="match_parent"

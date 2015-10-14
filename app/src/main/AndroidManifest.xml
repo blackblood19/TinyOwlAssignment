@@ -17,7 +17,13 @@
         </activity>
         <activity
             android:name=".Notes"
-            android:label="Notes" >
+            android:label="Notes"
+            android:parentActivityName="com.example.chaitanya.tinyowlassignment.Home" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.chaitanya.tinyowlassignment.Home" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

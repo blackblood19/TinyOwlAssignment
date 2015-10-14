@@ -5,9 +5,12 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Chaitanya on 9/27/2015.
@@ -15,13 +18,24 @@ import android.widget.Button;
 public class PostDialog extends DialogFragment{
     private String mAction;
     private String mMessage;
+    private String mNodeId;
 
     /*PostDialog(String action){
         this.mAction = action;
     }*/
 
-    public void setAction(String action){
+    public void setActionAndMessage(String action, String message, String nodeId){
         this.mAction = action;
+        mMessage = message;
+        mNodeId = nodeId;
+    }
+    public void setActionAndMessage(String action){
+        if(!action.equals("ADD")) {
+            Log.d("ZMY", "Update without nodeId");
+            return;
+        }
+        this.mAction = action;
+        mMessage="";
     }
 
 
@@ -56,6 +70,12 @@ public class PostDialog extends DialogFragment{
 
         Button btnAction = (Button) dialogView.findViewById(R.id.postAction);
         btnAction.setText(mAction);
+        EditText postMessage = (EditText) dialogView.findViewById(R.id.postMessage);
+        postMessage.setText(mMessage);
+        if(mNodeId!=null && !mNodeId.isEmpty()) {
+            TextView postNodeId = (TextView) dialogView.findViewById(R.id.postNodeId);
+            postNodeId.setText(mNodeId);
+        }
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

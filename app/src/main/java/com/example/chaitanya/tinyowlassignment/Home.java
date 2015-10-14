@@ -26,7 +26,7 @@ public class Home extends ActionBarActivity implements View.OnClickListener, Pos
         btnMyNotes = (Button)findViewById(R.id.btnMyNotes);
         btnMyNotes.setOnClickListener(this);
 
-        strAccessToken = "CAACEdEose0cBALwQIDRw9nMp7LxZAZCCtBscfofbi1N1tOUxOH4mFB2enDrrkvk2t4q2P7RDgIcNnGzzvAjbpNTb8RCYyLrW1qNKMoojBrKetZBXiI1ulUuD8nyX4ZBzLZAJoaL5ZCyJWJf4Irq1Wrr6sFZB4g2DcuDIZBLh4lIjDxo9ytJjm45k1BZCWxPw0LoUs9lmrH6sz2AZDZD";
+        strAccessToken = "CAACEdEose0cBADUPZC942bEkSwmY4InHKfE6lnoh6sByOj2qTW1ZCE7ZAqHMf7SwBKi9KjMMIQtLGrF2P84DXIIsex3ZAQ0Q7NZCUMmvHydi3soOnWF5WsQTaZCXITBf332W4d5PjlkfMsVRqKA2jnkhroJAVZBLFZAkyZAZCayTZBUeELEx16y5BkLO1N1qhox4ZBCk6qfVL5wzlgZDZD";
     }
 
     @Override

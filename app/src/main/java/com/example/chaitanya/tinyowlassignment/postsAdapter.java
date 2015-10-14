@@ -27,6 +27,15 @@ public class postsAdapter extends BaseAdapter implements ListAdapter{
         this.mPosts = posts;
     }
 
+    public interface postsAdapterListener{
+        public void onDelClick(int position);
+    }
+    postsAdapterListener mPostsListener;
+    public void setListener(postsAdapterListener listener){
+        mPostsListener = listener;
+    }
+
+
     @Override
     public int getCount() {
         return mPosts.size();
@@ -58,6 +67,7 @@ public class postsAdapter extends BaseAdapter implements ListAdapter{
             @Override
             public void onClick(View v) {
                 Log.d("ZMY", "Clicked on " + position + ": " + mPosts.get(position).getMessage() + ", Node id: " + mPosts.get(position).getNodeId());
+                mPostsListener.onDelClick(position);
             }
         });
 
